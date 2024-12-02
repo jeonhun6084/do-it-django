@@ -1,0 +1,53 @@
+{% extends 'news/base.html' %}
+
+
+<!-- Featured news post-->
+{% block main_area %}
+<h1>News {% if category %}<span class="badge text-bg-secondary">{{ category }}</span>{% endif %}</h1>
+{% if post_list.exists %}
+{% for post in post_list %}
+<div class="card mb-4" id="post-{{ post.pk }}">
+    {% if post.head_image %}
+        <a href="#!"><img class="card-img-top" src="{{ post.head_image.url }}" alt="..." /></a>
+    {% else %}
+        <a href="#!"><img class="card-img-top" src="https://picsum.photos/seed/{{post.id}}/600/300" alt="..." /></a>
+    {% endif %}
+    <div class="card-body">
+        {% if post.category %}
+            <span class="badge badge-secondary float-right">{{ post.category }}</span>
+        {% else %}
+            <span class="float-right">미분류</span>
+        {% endif %}
+        <div class="small text-muted">{{ post.created_at }}</div>
+        <div class="small text-muted">
+            작성자
+            <a href="#">{{ post.author | upper }}</a>
+        </div>
+        <h2 class="card-title">{{ post.title }}</h2>
+        {% if post.hook_text %}
+            <h5 class="text-muted">{{ post.hook_text }}</h5>
+        {% endif %}
+        <p class="card-text">{{ post.content | truncatewords:50}} </p>
+        <a class="btn btn-primary" href="{{ post.get_absolute_url }}">Read more →</a>
+    </div>
+</div>
+{% endfor %}
+{% else %}
+<div>
+    <p>아직 게시물이 없습니다.</p>
+</div>
+{% endif %}
+<!-- Pagination-->
+<nav aria-label="Pagination">
+    <hr class="my-0" />
+    <ul class="pagination justify-content-center my-4">
+        <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1" aria-disabled="true">&larr; Newer</a></li>
+        <li class="page-item active" aria-current="page"><a class="page-link" href="#!">1</a></li>
+        <li class="page-item"><a class="page-link" href="#!">2</a></li>
+        <li class="page-item"><a class="page-link" href="#!">3</a></li>
+        <li class="page-item disabled"><a class="page-link" href="#!">...</a></li>
+        <li class="page-item"><a class="page-link" href="#!">15</a></li>
+        <li class="page-item"><a class="page-link" href="#!">Older &rarr;</a></li>
+    </ul>
+</nav>
+{% endblock %}

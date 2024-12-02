@@ -1,0 +1,93 @@
+{% extends 'blog/base.html' %}
+
+
+<!-- Featured blog post-->
+{% block main_area %}
+
+
+<h1 style="display: flex; align-items: center;">
+    Blog
+    {% if search_info %}<small class="text-muted">{{ search_info }}</small>{% endif %}
+    {% if category %}<span class="badge text-bg-secondary">{{ category }}</span>{% endif %}
+    {% if tag %}<span class="badge text-bg-secondary">{{ tag }}</span>{% endif %}
+
+    {% if user.is_authenticated %}
+        {% if user.is_superuser or user.is_staff %}
+            <div style="margin-left: auto;">
+                <a class="btn btn-nfo btn-sm text-bg-primary" href="/blog/create_post/" role="button">
+                    <i class="fas fa-pen"></i>&nbsp;&nbsp;New Post
+                </a>
+            </div>
+        {% endif %}
+    {% endif %}
+</h1>
+
+{% if post_list.exists %}
+{% for post in post_list %}
+<div class="card mb-4" id="post-{{ post.pk }}">
+    {% if post.head_image %}
+        <a href="#!"><img class="card-img-top" src="{{ post.head_image.url }}" alt="..." /></a>
+    {% else %}
+        <a href="#!"><img class="card-img-top" src="https://picsum.photos/seed/{{post.id}}/600/300" alt="..." /></a>
+    {% endif %}
+    <div class="card-body">
+        {% if post.category %}
+            <span class="badge text-bg-primary">{{ post.category }}</span>
+        {% else %}
+            <span class="badge text-bg-primary">미분류</span>
+        {% endif %}
+        
+        {% if post.tags.exists %}
+            <i class="fas fa-tags"></i>
+            {% for tag in post.tags.iterator %}
+                <a href="{{ tag.get_absolute_url }}"><span class="badge text-bg-success">{{ tag }}</span></a>
+            {% endfor %}
+            <br/>
+            <br/>
+        {% endif %}
+
+        <div class="small text-muted">{{ post.created_at }}</div>
+        <div class="small text-muted">
+            작성자
+            <a href="#">{{ post.author | upper }}</a>
+        </div>
+        <h2 class="card-title">{{ post.title }}</h2>
+        {% if post.hook_text %}
+            <h5 class="text-muted">{{ post.hook_text }}</h5>
+        {% endif %}
+        <p class="card-text">{{ post.get_content_markdown | truncatewords:50 | safe }} </p>
+        <a class="btn btn-pri   mary" href="{{ post.get_absolute_url }}">Read more →</a>
+    </div>
+</div>
+{% endfor %}
+{% else %}
+<div>
+    <p>아직 게시물이 없습니다.</p>
+</div>
+{% endif %}
+<!-- Pagination-->
+{% if is_paginated %}
+    <ul class="pagination justify-content-center my-4">
+        {% if page_obj.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.next_page_number }}">&larr; Older</a>
+            </li>
+        {% else %}
+            <li class="page-item disabled">
+                <a class="page-link" href="#">&larr; Older</a>
+            </li>
+        {% endif %}
+
+        {% if page_obj.has_previous %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Newer &rarr;</a>
+            </li>
+        {% else %}
+            <li class="page-item disabled">
+                <a class="page-link" href="#">&larr; Newer</a>
+            </li>
+        {% endif %}
+    </ul>
+{% endif %}
+
+{% endblock %}

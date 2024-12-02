@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>About Me</title>
+        <link href="{% static 'blog/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet" media="screen">
+        <link href="{% static 'single_pages/css/about_me.css' %}" rel="stylesheet" media="screen">
+    </head>
+    <body>
+        <!-- Responsive navbar-->
+        {% include 'single_pages/navbar.html' %}
+
+        <section>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <h1>Hello. I'm jihwan.</h1>
+                    </div>
+                    <div class="col-lg-4">
+                        <img class="img-fluid" src="{% static 'single_pages/images/me.jpg' %}">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="bg-light">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <h1>Portfolio</h1>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4" data-bs-toggle="modal" data-bs-target="#project1">
+                            <img class="card-img-top" height="300px" src="https://avatars.githubusercontent.com/u/48326972?v=4">
+                            <div class="card-body">
+                                <h5>CARFAQ 시스템</h5>
+                                <p>CARFAQ 시스템은 한번의 클릭으로 지정된 사이트의 FAQ를 검색하고 전국 자동차 등록 현황을 확인하는 서비스</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-4" data-bs-toggle="modal" data-bs-target="#project2">
+                            <img class="card-img-top" height="300px" src="https://camo.githubusercontent.com/1a54e6ae0ed9476c6f20cd8d043282d47167aa079aea60ea4b5e37e5835855a5/68747470733a2f2f63646e2e696d7765622e6d652f75706c6f61642f533230323430333134626431303433366137393931612f343161393736396363343465362e706e67">
+                            <div class="card-body">
+                                <h5>가입 고객 이탈 예측</h5>
+                                <p>기업에게 고객 이탈은 중요한 문제입니다. 다른 경쟁사로 고객이 이동하는 행위는 기업 수익성과 관련하여 큰 문제이기 때문에 고객 이탈을 사전에 예방해야합니다. 그렇기에 저희 팀은 주어진 고객 데이터를 기반하여 고객이탈 예측 모델을 제작하여 사전에 이탈 가능성이 높은 고객을 찾아 예방하고자 합니다.</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-4" data-bs-toggle="modal" data-bs-target="#project3">
+                            <img class="card-img-top" height="300px" src="https://github.com/SKNETWORKS-FAMILY-AICAMP/SKN04-3rd-1Team/raw/main/img/sk.png">
+                            <div class="card-body">
+                                <h5>챗봇 시스템 구현</h5>
+                                <p>'Enco Library Chatbot'은 'Enco Library'가 소장한 도서에 대해 검색을 했을 때 hallucination이 없는 답변을 제공하는 것을 목표로 합니다.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- modal -->
+        <div class="modal fade" id="project1" tabindex="-1" role="dialog" aria-labelledby="project1ModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="project1ModalLabel">CARFAQ 시스템</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        CARFAQ 시스템은 한번의 클릭으로 지정된 사이트의 FAQ를 검색하고 전국 자동차 등록 현황을 확인하는 서비스.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="project2" tabindex="-1" role="dialog" aria-labelledby="project2ModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="project2ModalLabel">가입 고객 이탈 예측</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        기업에게 고객 이탈은 중요한 문제입니다. 다른 경쟁사로 고객이 이동하는 행위는 기업 수익성과 관련하여 큰 문제이기 때문에 고객 이탈을 사전에 예방해야합니다. 그렇기에 저희 팀은 주어진 고객 데이터를 기반하여 고객이탈 예측 모델을 제작하여 사전에 이탈 가능성이 높은 고객을 찾아 예방하고자 합니다.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="project3" tabindex="-1" role="dialog" aria-labelledby="project3ModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="project3ModalLabel">챗봇 시스템 구현</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        'Enco Library Chatbot'은 'Enco Library'가 소장한 도서에 대해 검색을 했을 때 hallucination이 없는 답변을 제공하는 것을 목표로 합니다.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% include 'single_pages/footer.html' %}
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    </body>
+</html>
